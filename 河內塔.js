@@ -1,4 +1,3 @@
-//泡泡排序法 一步一步完成
 const places = {
   1: document.getElementById("place-1"),
   2: document.getElementById("place-2"),
