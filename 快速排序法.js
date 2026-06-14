@@ -1,3 +1,10 @@
+/*嚴格的 Hoare 左右夾擠法
+
+強制鎖定第一個數字為基準點
+
+深度優先：必定先切分較小的區段
+
+遇到相等的數字必須直接跳過*/
 (() => {
     const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms));
 
