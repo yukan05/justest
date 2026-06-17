@@ -1,0 +1,38 @@
+// 取得畫面上所有的數字元素
+const items = document.querySelectorAll('.item');
+const targetValue = "45"; 
+let delay = 0; // 初始延遲時間
+
+console.log("🚀 開始自動執行循序搜尋...");
+
+for (let i = 0; i < items.length; i++) {
+    let text = items[i].innerText.trim();
+    
+    // 設定定時器，每 0.4 秒自動點擊下一個數字，營造「自己跑」的動畫感
+    setTimeout(() => {
+        items[i].click();
+        console.log(`[步驟 ${i + 1}] 已點擊: ${text}`);
+    }, delay);
+    
+    delay += 400; // 每次間隔 400 毫秒
+    
+    // 如果找到目標數字，就停止繼續點擊，並自動提交答案
+    if (text === targetValue) {
+        setTimeout(() => {
+            console.log("✅ 找到目標！準備提交答案...");
+            
+            // 點選「循序搜尋法」
+            const seqRadio = document.querySelector('input[value="seq"]');
+            if (seqRadio) seqRadio.click();
+            
+            // 解除鎖定並點擊「提交」按鈕
+            const submitBtn = document.querySelector('button.is-success');
+            if (submitBtn) {
+                submitBtn.removeAttribute('disabled');
+                submitBtn.click();
+                console.log("🎉 提交完成！");
+            }
+        }, delay + 500); // 點完目標後，稍微等一下再提交
+        break; // 結束迴圈
+    }
+}
